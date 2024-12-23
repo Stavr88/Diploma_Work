@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, gettext
 
 
 class User(AbstractUser):
@@ -10,10 +10,17 @@ class User(AbstractUser):
     Модель для создания и хранения данных о пользователе, данные хранятся в базе данных, в данном проекте используется
     БД PostgreSQL, настройки можно посмотреть в файле config.settings.py в переменной DATABASES
     """
-    CHOICES_USER_ROLE = {
-        "user": "user",
-        "admin": "admin"
-    }
+    # US = "user"
+    # ADMIN = "admin"
+    CHOICES_USER_ROLE = [
+        (_("user"), _("user")),
+        (_("admin"), _("admin")),
+    ]
+
+    # CHOICES_USER_ROLE = {
+    #         "user": "user",
+    #         "admin": "admin"
+    # }
 
     username = None
     email = models.EmailField(
@@ -56,12 +63,12 @@ class User(AbstractUser):
         blank=True,
         null=True,
     )
-    token = models.CharField(
-        max_length=100,
-        verbose_name="Тоken",
-        null=True,
-        blank=True
-    )
+    # token = models.CharField(
+    #     max_length=100,
+    #     verbose_name="Тоken",
+    #     null=True,
+    #     blank=True
+    # )
     last_login = models.DateTimeField(
         default=datetime.now,
         verbose_name=_("Время последнего посещения"),
@@ -71,6 +78,7 @@ class User(AbstractUser):
     role = models.CharField(
         max_length=100,
         choices=CHOICES_USER_ROLE,
+        default=gettext("user")
     )
 
     USERNAME_FIELD = "email"
@@ -82,7 +90,7 @@ class User(AbstractUser):
 
     def __str__(self):
         """
-        Возвращает строковое представление объекта
+        Строковое отображение объекта
         """
-        return self.email
+        return f'{self.first_name}'
 

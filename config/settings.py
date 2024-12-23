@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework",
 
+    "rest_framework.authtoken",
+    "djoser",
+
     "django_filters",
     "django_celery_beat",
 ]
@@ -74,6 +77,9 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -147,9 +153,15 @@ AUTH_USER_MODEL = "users.User"
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=20),
+    "AUTH_HEADER_TYPES": ("JWT",),
 }
 
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+}
 
 # Настройки для Celery
 
