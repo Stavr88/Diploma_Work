@@ -1,0 +1,44 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$ifrTxhX93unIkRFipV9JZf$77V7Zstf9u5vcbxDW8ykrYimmo2LozAYFN64TR4qJHs=",
+    "is_superuser": true,
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-12-20T14:36:59Z",
+    "email": "globallife@mail.ru",
+    "phone": null,
+    "avatar": "",
+    "first_name": "Юрий",
+    "last_name": null,
+    "country": null,
+    "last_login": "2024-12-20T18:33:21.137Z",
+    "role": "admin",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "201023",
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-12-23T15:16:11Z",
+    "email": "test@mail.ru",
+    "phone": null,
+    "avatar": "",
+    "first_name": "Вася",
+    "last_name": null,
+    "country": null,
+    "last_login": "2024-12-23T15:16:11Z",
+    "role": "пользователь",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
