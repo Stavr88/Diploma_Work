@@ -10,7 +10,7 @@ class IsOwner(BasePermission):
         """
         Проверяет, является ли пользователь владельцем
         """
-        if object.owner == request.user:
+        if object.author == request.user:
             return True
         return False
 

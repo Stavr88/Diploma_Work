@@ -17,11 +17,11 @@ from ads.views import (
 app_name = AdsConfig.name
 
 urlpatterns = [
-    path("ads/create/", AdsCreateAPIView.as_view(), name="ads_create"),
-    path("ads/", AdsListAPIView.as_view(), name="ads_list"),
-    path("ads/retrieve/<int:pk>/", AdsRetrieveAPIView.as_view(), name="ads_retrieve"),
-    path("ads/update/<int:pk>/", AdsUpdateAPIView.as_view(), name="ads_update"),
-    path("ads/destroy/<int:pk>/", AdsDestroyAPIView.as_view(), name="ads_destroy"),
+    path("create/", AdsCreateAPIView.as_view(), name="ads_create"),
+    path("", AdsListAPIView.as_view(), name="ads_list"),
+    path("retrieve/<int:pk>/", AdsRetrieveAPIView.as_view(), name="ads_retrieve"),
+    path("update/<int:pk>/", AdsUpdateAPIView.as_view(), name="ads_update"),
+    path("destroy/<int:pk>/", AdsDestroyAPIView.as_view(), name="ads_destroy"),
     path("feedback/create/", FeedbackCreateAPIView.as_view(), name="feedback_create"),
     path("feedback/", FeedbackListAPIView.as_view(), name="feedback_list"),
     path("feedback/retrieve/<int:pk>/", FeedbackRetrieveAPIView.as_view(), name="feedback_retrieve"),

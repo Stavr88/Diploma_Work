@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     "django_filters",
     "django_celery_beat",
+
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -151,12 +154,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 AUTH_USER_MODEL = "users.User"
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=360),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=20),
     "AUTH_HEADER_TYPES": ("JWT",),
 }
 
-STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
@@ -203,5 +205,31 @@ EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=False) == "True"
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', default=False) == "True"
+
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://read-only.example.com",
+    "https://read-and-write.example.com",
+]
+# Для того что бы можно было заходить в админ панель, необходимо указать:
+CSRF_TRUSTED_ORIGINS = [
+    "https://read-and-write.example.com",
+]
+# Переменная с флагом False запрещает заходить с других доменов
+CORS_ALLOW_ALL_ORIGINS = False
+
+# Переменные отображения кол-во элементов на странице, path - habits/paginations.py
+PAGE_SIZE = 4
+MAX_PAGE_SIZE = 7
+
+# Внешний вид ссылки, который приходит на почту клиенту при смене пароля,
+# когда делается запрос http://127.0.0.1:8000/users/reset-password/.
+# Для смены пароля необходимо выполнить запрос POST с URL вида:
+# http://127.0.0.1:8000/users/reset-password-confirm/uid/token/
+DJOSER = {
+    "PASSWORD_RESET_CONFIRM_URL": "{uid}/{token}",
+}

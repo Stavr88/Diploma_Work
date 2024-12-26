@@ -56,7 +56,8 @@ class AdsUpdateAPIView(UpdateAPIView):
         """
         Возвращает права доступа в зависимости от прав пользователя
         """
-        return get_user_permissions(self.request)
+        print(self.request)
+        return [permission() for permission in get_user_permissions(self.request)]
 
 
 class AdsDestroyAPIView(DestroyAPIView):
