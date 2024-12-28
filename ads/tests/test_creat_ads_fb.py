@@ -52,7 +52,7 @@ def test_ads_retrieve(user, api_client, ads_db):
 
 
 @pytest.mark.django_db
-def test_ads_update(user, api_client, ads_db, view):
+def test_ads_update(user, api_client, ads_db):
     """
     Тестирование обновления объявления
     """
@@ -67,7 +67,7 @@ def test_ads_update(user, api_client, ads_db, view):
 
 
 @pytest.mark.django_db
-def test_ads_destroy(user, api_client, ads_db, view):
+def test_ads_destroy(user, api_client, ads_db):
     """
     Тестирование удаления объявления
     """
@@ -127,7 +127,7 @@ def test_feedback_retrieve(user, api_client, feedback_db):
 
 
 @pytest.mark.django_db
-def test_feedback_update(user, api_client, feedback_db, ads_db, view):
+def test_feedback_update(user, api_client, feedback_db, ads_db):
     """
     Тестирование обновления отзыва
     """
@@ -142,7 +142,7 @@ def test_feedback_update(user, api_client, feedback_db, ads_db, view):
 
 
 @pytest.mark.django_db
-def test_feedback_destroy(user, api_client, feedback_db, view):
+def test_feedback_destroy(user, api_client, feedback_db):
     """
     Тестирование удаления отзыва
     """
