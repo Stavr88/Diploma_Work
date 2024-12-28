@@ -10,9 +10,9 @@ def get_user_permissions(request):
     if not request.user.is_authenticated:
         return (IsAuthenticatedOrReadOnly,)
     if request.user.is_superuser:
-        return (IsAdminUser(),)
+        return (IsAdminUser,)
     if request.user.role == "user":
-        return (IsOwner(),)
+        return (IsOwner,)
     if request.user.role == "admin":
-        return (IsAdmin(),)
+        return (IsAdmin,)
     

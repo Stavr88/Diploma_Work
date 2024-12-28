@@ -6,7 +6,7 @@ class IsOwner(BasePermission):
     Класс для проверки прав доступа для владельца
     """
 
-    def has_object_permission(self, request, view, object):
+    def has_object_permission(self, request, object,  view):
         """
         Проверяет, является ли пользователь владельцем
         """

@@ -36,7 +36,7 @@ def user():
     Фикстура для создания экземпляра тестового пользователя
     """
     return User.objects.create(
-        email="test1@mail.ru",
+        email="test111@mail.ru",
         role="user",
         password="1234",
     )
@@ -60,7 +60,7 @@ def feedback_db(user, ads_db):
     Фикстура для создания экземпляра тестового отзыва
     """
     return Feedback.objects.create(
-        text="Test1",
+        text="Test111",
         ad=ads_db,
         author=user,
     )

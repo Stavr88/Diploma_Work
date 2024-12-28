@@ -48,26 +48,26 @@ def test_ads_retrieve(user, api_client, ads_db):
     response = api_client.get(url)
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["title"] == "Test Advertisement"
+    assert response.data["title"] == "Test1"
 
 
 @pytest.mark.django_db
-def test_ads_update(user, api_client, ads_db):
+def test_ads_update(user, api_client, ads_db, view):
     """
     Тестирование обновления объявления
     """
     api_client.force_authenticate(user=user)
-    url = reverse("advertisement:ads_update", args=(ads_db.id,))
-    data = {"title": "New Advertisement"}
+    url = reverse("ads:ads_update", args=(ads_db.id,))
+    data = {"title": "Test1"}
 
     response = api_client.patch(url, data)
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["title"] == "New Advertisement"
+    assert response.data["title"] == "Test1"
 
 
 @pytest.mark.django_db
-def test_ads_destroy(user, api_client, ads_db):
+def test_ads_destroy(user, api_client, ads_db, view):
     """
     Тестирование удаления объявления
     """
@@ -88,7 +88,7 @@ def test_feedback_create(user, api_client, ads_db):
     api_client.force_authenticate(user=user)
     url = reverse("ads:feedback_create")
     data = {
-        "text": "Test Review",
+        "text": "Test111",
         "ad": ads_db.id,
         "author": user.id,
     }
@@ -127,13 +127,13 @@ def test_feedback_retrieve(user, api_client, feedback_db):
 
 
 @pytest.mark.django_db
-def test_feedback_update(user, api_client, feedback_db, ads_db):
+def test_feedback_update(user, api_client, feedback_db, ads_db, view):
     """
     Тестирование обновления отзыва
     """
     api_client.force_authenticate(user=user)
     url = reverse("ads:feedback_update", args=(feedback_db.id,))
-    data = {"text": "Test1", "ad": ads_db.id, "author": user.id}
+    data = {"text": "Test1111", "ad": ads_db.id, "author": user.id}
 
     response = api_client.put(url, data)
 
@@ -142,7 +142,7 @@ def test_feedback_update(user, api_client, feedback_db, ads_db):
 
 
 @pytest.mark.django_db
-def test_feedback_destroy(user, api_client, feedback_db):
+def test_feedback_destroy(user, api_client, feedback_db, view):
     """
     Тестирование удаления отзыва
     """
