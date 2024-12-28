@@ -1,5 +1,4 @@
-
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, APIClient
 import pytest
 from django.urls import reverse
 from rest_framework import status
@@ -34,22 +33,21 @@ from users.models import User
 #     assert response.data["email"] == "test2@mail.ru"
 #
 #
-# def test_registration_successful(APIClient):
-#     password = "new_password"
-#     email = "new_user@example.com"
+# def test_registration_successful(register_user):
+#     password = "1234"
+#     email = "test2@mail.ru"
 #
 #     # Отправка запроса на регистрацию пользователя
-#     response = APIClient.register_user(password, email)
+#     response = register_user()
 #
 #     # Проверки успешной регистрации
 #     assert response["status"] == "success"
 #     assert response["message"] == "User registered successfully"
-#
-#
 
+#
 
 @pytest.mark.django_db
-def test_user_create(client):
+def test_user_create(api_client):
     """Тестирование создания пользователя."""
     url = reverse("users:register")
     data = {
@@ -59,7 +57,7 @@ def test_user_create(client):
         "role": "user",
         "password": "123teST",
     }
-    response = client.post(url, data)
+    response = api_client.post(url, data)
 
     assert response.status_code == status.HTTP_201_CREATED
     assert response.data["email"] == "user@test.com"
