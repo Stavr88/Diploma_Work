@@ -24,6 +24,4 @@ class IsAdmin(BasePermission):
         """
         Проверяет роль пользователя
         """
-        a = request()
-        return a.user.role == "admin"
-        # return request.user.role == "admin"
+        return request.user.role == "admin"
