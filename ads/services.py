@@ -8,11 +8,11 @@ def get_user_permissions(request):
     Настройка прав доступа в зависимости от прав пользователя
     """
     if not request.user.is_authenticated:
-        return (IsAuthenticatedOrReadOnly,)
+        return [IsAuthenticatedOrReadOnly()]
     if request.user.is_superuser:
-        return (IsAdminUser,)
+        return [IsAdminUser()]
     if request.user.role == "user":
-        return (IsOwner,)
+        return [IsOwner()]
     if request.user.role == "admin":
-        return (IsAdmin,)
+        return [IsAdmin()]
     

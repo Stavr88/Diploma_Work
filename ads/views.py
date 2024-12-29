@@ -56,16 +56,18 @@ class AdsUpdateAPIView(UpdateAPIView):
     #     """
     #     Возвращает права доступа в зависимости от прав пользователя
     #     """
-    #     print(self.request)
     #     return [permission() for permission in get_user_permissions(self.request)]
 
     def get_permissions(self):
-        """Возвращает права доступа в зависимости от прав пользователя."""
+        """
+        Возвращает права доступа в зависимости от прав пользователя
+        """
         return get_user_permissions(self.request)
+
 
 class AdsDestroyAPIView(DestroyAPIView):
     """
-    Представление для удаления объекта модели Advertisement
+    Класс для удаления объекта модели Ads
     """
 
     queryset = Ads.objects.all()
@@ -79,7 +81,7 @@ class AdsDestroyAPIView(DestroyAPIView):
 
 class FeedbackCreateAPIView(CreateAPIView):
     """
-    Представление для создания объекта модели Feedback
+    Класс для создания объекта модели Feedback
     """
 
     serializer_class = FeedbackSerializer
@@ -93,7 +95,7 @@ class FeedbackCreateAPIView(CreateAPIView):
 
 class FeedbackListAPIView(ListAPIView):
     """
-    Представление для просмотра списка объектов модели Feedback
+    Класс для просмотра списка объектов модели Feedback
     """
 
     queryset = Feedback.objects.all()
@@ -102,7 +104,7 @@ class FeedbackListAPIView(ListAPIView):
 
 class FeedbackRetrieveAPIView(RetrieveAPIView):
     """
-    Представление для просмотра одного объекта модели Feedback
+    Класс для просмотра одного объекта модели Feedback
     """
 
     queryset = Feedback.objects.all()
@@ -111,7 +113,7 @@ class FeedbackRetrieveAPIView(RetrieveAPIView):
 
 class FeedbackUpdateAPIView(UpdateAPIView):
     """
-    Представление для обновления объекта модели Feedback
+    Класс для обновления объекта модели Feedback
     """
 
     queryset = Feedback.objects.all()
@@ -126,11 +128,13 @@ class FeedbackUpdateAPIView(UpdateAPIView):
 
 class FeedbackDestroyAPIView(DestroyAPIView):
     """
-    Представление для удаления объекта модели Feedback
+    Класс для удаления объекта модели Feedback
     """
 
     queryset = Feedback.objects.all()
 
     def get_permissions(self):
-        """Возвращает права доступа в зависимости от прав пользователя."""
+        """
+        Возвращает права доступа в зависимости от прав пользователя
+        """
         return get_user_permissions(self.request)
